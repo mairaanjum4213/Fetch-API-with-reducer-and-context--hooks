@@ -5,7 +5,6 @@ let API = "https://hn.algolia.com/api/v1/search?";
 let initialState ={
   isLoading:true,
   query: "HTML",
-  nbPages:0,
   pages:0,
   hits:[]
 }
@@ -13,7 +12,7 @@ let initialState ={
 const reducer = (state,action)=>{
   switch(action.type){
     case "GETDATA":
-      return{...state, hits: action.payload.hits, isLoading:false, nbPages: action.payload.nbPages}
+      return{...state, hits: action.payload.hits, isLoading:false}
     case "IS_LOADING":
       return {...state,isLoading:true}
     case "REMOVEPOST":
@@ -62,7 +61,6 @@ export const ContextProvider = (props) => {
               type:"GETDATA",
               payload : {
                 hits:data.hits,
-                nbPages:data.nbPages
               }
             })
         }
